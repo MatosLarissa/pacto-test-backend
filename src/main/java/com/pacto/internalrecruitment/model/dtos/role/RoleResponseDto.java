@@ -1,18 +1,17 @@
 package com.pacto.internalrecruitment.model.dtos.role;
-
-import com.pacto.internalrecruitment.model.enums.StatusAccount;
-import com.pacto.internalrecruitment.model.enums.UserRole;
-import com.pacto.internalrecruitment.model.enums.YearsExperience;
 import lombok.Data;
-
-import java.time.LocalDateTime;
+import lombok.Getter;
 
 @Data
 public class RoleResponseDto {
 
-    private UserRole role;
+    private Integer id;
 
-    public RoleResponseDto(UserRole role){
-      this.role = role;
+    private String roleType;
+
+    public RoleResponseDto(Integer id, String roleType) {
+        this.id = id;
+        this.roleType = roleType;
     }
+
 }
