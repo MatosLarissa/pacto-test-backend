@@ -1,7 +1,6 @@
 package com.pacto.internalrecruitment.repository;
 
 import com.pacto.internalrecruitment.model.Role;
-import com.pacto.internalrecruitment.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
