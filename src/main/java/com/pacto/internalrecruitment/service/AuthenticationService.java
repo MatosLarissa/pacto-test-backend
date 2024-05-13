@@ -1,9 +1,14 @@
 package com.pacto.internalrecruitment.service;
 
 import com.pacto.internalrecruitment.exception.AccessDeniedException;
+import com.pacto.internalrecruitment.exception.AlreadyExistsException;
+import com.pacto.internalrecruitment.exception.ExistingException;
 import com.pacto.internalrecruitment.model.User;
 import com.pacto.internalrecruitment.model.dtos.user.AuthenticationRequestDto;
 import com.pacto.internalrecruitment.model.dtos.user.LoginResponseDto;
+import com.pacto.internalrecruitment.model.dtos.user.SignInRequestDto;
+import com.pacto.internalrecruitment.model.dtos.user.SignInResponseDto;
+import com.pacto.internalrecruitment.model.factory.UserFactory;
 import com.pacto.internalrecruitment.repository.UserRepository;
 
 import org.slf4j.Logger;
@@ -48,4 +53,21 @@ public class AuthenticationService {
             }
     }
 
+    public SignInResponseDto registerUser(SignInRequestDto data) {
+        Optional<User> existingUser = userRepository.findByEmail(data.getEmail());
+
+        if (existingUser.isPresent()) {
+            throw new AlreadyExistsException("O email: " + data.getEmail() + " já está cadastrado");
+        } else {
+            try {
+                User newUser = UserFactory.createUser(data);
+                String token = tokenService.generateToken(newUser.getEmail());
+                userRepository.save(newUser);
+                return new SignInResponseDto(token);
+            } catch (Exception e) {
+                logger.error("Erro ao salvar o usuário: " + e.getMessage());
+                throw new ExistingException("Erro ao cadastrar usuário");
+            }
+        }
+    }
 }
