@@ -1,17 +1,16 @@
-package com.pacto.internalrecruitment.model.dto.user;
+package com.pacto.internalrecruitment.model.dtos.user;
 
-import com.pacto.internalrecruitment.model.enums.user.UserRole;
-import com.pacto.internalrecruitment.shared.enums.Experience;
-import com.pacto.internalrecruitment.shared.enums.Status;
 
+import com.pacto.internalrecruitment.model.enums.UserRole;
+import com.pacto.internalrecruitment.model.enums.YearsExperience;
 import lombok.Data;
-
-import java.util.Date;
 
 @Data
 public class UserRequestDto {
 
-    private String name;
+    private String firstName;
+
+    private String lastName;
 
     private String email;
 
@@ -19,22 +18,14 @@ public class UserRequestDto {
 
     private UserRole role;
 
-    private Status status;
+    private YearsExperience yearsExperience;
 
-    private Date lastActivity;
-
-    private Date creationDate;
-
-    private Experience experienceId;
-
-    public UserRequestDto(String name, String email, String password, UserRole role, Status status, Date lastActivity, Date creationDate, Experience experienceId ){
-      this.name = name;
+    public UserRequestDto(String firstName, String lastName, String email, String password, UserRole role, YearsExperience yearsExperience ){
+      this.firstName = firstName;
+      this.lastName = lastName;
       this.email = email;
       this.password = password;
       this.role = role;
-      this.status = status;
-      this.lastActivity = lastActivity;
-      this.creationDate = creationDate;
-      this.experienceId = experienceId;
+      this.yearsExperience = yearsExperience;
     }
 }
