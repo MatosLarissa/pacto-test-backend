@@ -31,8 +31,8 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .antMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                        .antMatchers(HttpMethod.GET, "/admin/**").hasAuthority("ROLE_ADMIN")
-                        .antMatchers(HttpMethod.GET, "/user/**").hasAuthority("ROLE_USER")
+                        .antMatchers( "/admin/**").hasAuthority("ROLE_ADMIN")
+                        .antMatchers("/user/**").hasAuthority("ROLE_USER")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
