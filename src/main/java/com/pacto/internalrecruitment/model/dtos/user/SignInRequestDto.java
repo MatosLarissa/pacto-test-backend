@@ -1,6 +1,5 @@
 package com.pacto.internalrecruitment.model.dtos.user;
 
-import com.pacto.internalrecruitment.model.enums.YearsExperience;
 import lombok.Data;
 
 @Data
@@ -13,9 +12,9 @@ public class SignInRequestDto {
 
     private String password;
 
-    private YearsExperience yearsExperience;
+    private String yearsExperience;
 
-    public SignInRequestDto(String firstName, String lastName, String email, String password, YearsExperience yearsExperience ){
+    public SignInRequestDto(String firstName, String lastName, String email, String password, String yearsExperience ){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
