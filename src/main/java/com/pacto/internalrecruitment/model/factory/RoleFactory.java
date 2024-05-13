@@ -8,7 +8,7 @@ public class RoleFactory {
     public static Role createRole(RoleRequestDto requestDto) {
 
         Role newRole = new Role();
-        newRole.setRoleType(String.valueOf(requestDto.getRole()));
+        newRole.setRoleType(requestDto.getRoleType().toUpperCase());
         return newRole;
     }
 }
