@@ -1,6 +1,7 @@
 package com.pacto.internalrecruitment.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Setter
 @Table(name = "role")
 @Entity(name = "role")
+@NoArgsConstructor
 public class Role {
 
     @Id
