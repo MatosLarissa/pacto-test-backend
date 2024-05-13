@@ -4,14 +4,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-public class RequirementRequestDto {
+public class RequirementResponseDto {
+    private Integer id;
 
     private String requirementName;
 
     private String yearsExperience;
 
-    public RequirementRequestDto(String requirementName, String yearsExperience){
+    public RequirementResponseDto(Integer id, String requirementName, String yearsExperience){
+        this.id = id;
         this.requirementName = requirementName;
         this.yearsExperience = yearsExperience;
     }
