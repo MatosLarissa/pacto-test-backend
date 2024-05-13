@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -55,6 +57,13 @@ public class User implements UserDetails {
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_requirement",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "requirement_id", referencedColumnName = "id")
+    )
+    private Set<Requirement> requirements = new HashSet<>();
 
     @PrePersist
     protected void onCreate() {
