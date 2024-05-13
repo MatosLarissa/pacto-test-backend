@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface RequirementRepository  extends JpaRepository<Requirement, Integer> {
     Optional<Requirement> findByRequirementName(String requirementName);
-    Optional<Requirement> findByYearsExperience(String yearsExperience);
+    Optional<Requirement> findByYearsExperienceContaining(String yearsExperience);
+    Optional<Requirement> findByRequirementNameContaining(String requirementName);
 }
