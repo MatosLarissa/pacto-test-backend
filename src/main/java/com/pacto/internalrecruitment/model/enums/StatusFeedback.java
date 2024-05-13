@@ -13,4 +13,13 @@ public enum StatusFeedback {
     StatusFeedback(String value) {
         this.value = value;
     }
+
+    public static boolean contains(String test) {
+        for (StatusFeedback c : StatusFeedback.values()) {
+            if (c.name().equals(test)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

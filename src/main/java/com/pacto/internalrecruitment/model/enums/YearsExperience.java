@@ -15,4 +15,12 @@ public enum YearsExperience {
         this.experience = experience;
     }
 
+    public static boolean contains(String test) {
+        for (YearsExperience c : YearsExperience.values()) {
+            if (c.name().equals(test)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

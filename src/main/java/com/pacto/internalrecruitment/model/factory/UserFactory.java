@@ -4,6 +4,7 @@ import com.pacto.internalrecruitment.model.User;
 import com.pacto.internalrecruitment.model.dtos.user.SignInRequestDto;
 import com.pacto.internalrecruitment.model.enums.StatusAccount;
 import com.pacto.internalrecruitment.model.enums.UserRole;
+import com.pacto.internalrecruitment.model.enums.YearsExperience;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserFactory {
@@ -19,7 +20,7 @@ public class UserFactory {
         newUser.setPassword(encryptedPassword);
         newUser.setRole(UserRole.USER);
         newUser.setStatus(StatusAccount.PENDING);
-        newUser.setYearsExperience(requestDto.getYearsExperience());
+        newUser.setYearsExperience(YearsExperience.valueOf(requestDto.getYearsExperience()));
 
         return newUser;
     }
