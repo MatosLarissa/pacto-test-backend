@@ -38,12 +38,15 @@ public class User implements UserDetails {
     private String password;
 
     @Column(name = "role")
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private StatusAccount status = StatusAccount.PENDING;
 
     @Column(name = "years_experience")
+    @Enumerated(EnumType.STRING)
     private YearsExperience yearsExperience;
 
     @Column(name = "last_activity")
