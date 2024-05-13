@@ -1,4 +1,4 @@
-package com.pacto.internalrecruitment.model.dto.user;
+package com.pacto.internalrecruitment.model.dtos.user;
 
 import lombok.Data;
 
