@@ -46,6 +46,11 @@ public abstract class HttpResponseCreator
         return ResponseEntity.status(HttpStatus.CONFLICT).body(new HttpErrorReply(errors));
     }
 
+    protected ResponseEntity<HttpErrorReply> UnprocessableEntityResponse(String[] errors)
+    {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(new HttpErrorReply(errors));
+    }
+
     protected ResponseEntity<HttpErrorReply> InternalServerErrorResponse(String[] errors)
     {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new HttpErrorReply(errors));
