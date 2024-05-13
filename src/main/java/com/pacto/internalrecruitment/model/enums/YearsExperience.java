@@ -3,7 +3,7 @@ package com.pacto.internalrecruitment.model.enums;
 import lombok.Getter;
 
 @Getter
-public enum Experience {
+public enum YearsExperience {
     ZERO_TO_ONE_YEARS("0-1 years"),
     ONE_TO_THREE_YEARS("1-3 years"),
     THREE_TO_FIVE_YEARS("3-5 years"),
@@ -11,7 +11,7 @@ public enum Experience {
 
     private final String experience;
 
-    Experience(String experience){
+    YearsExperience(String experience){
         this.experience = experience;
     }
 
