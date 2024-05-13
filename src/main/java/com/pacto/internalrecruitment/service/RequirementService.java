@@ -43,7 +43,7 @@ public class RequirementService {
     }
 
     public Requirement getRequirementByName(String requirementName) {
-        Requirement requirement = requirementRepository.findByRequirementName(requirementName).orElse(null);
+        Requirement requirement = requirementRepository.findByRequirementNameContaining(requirementName).orElse(null);
         if (requirement == null) {
             throw new NotFoundException("Requisito com requirementName " + requirementName + " não encontrado");
         }

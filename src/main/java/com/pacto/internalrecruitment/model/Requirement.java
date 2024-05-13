@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,5 +24,11 @@ public class Requirement {
 
     @Column(name = "years_experience")
     private String yearsExperience;
+
+    @ManyToMany(mappedBy = "requirements")
+    private Set<Job> jobs = new HashSet<>();
+
+    @ManyToMany(mappedBy = "requirements")
+    private Set<User> user = new HashSet<>();
 
 }
