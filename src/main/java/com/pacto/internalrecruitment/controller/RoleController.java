@@ -1,39 +1,39 @@
 package com.pacto.internalrecruitment.controller;
 
 import com.pacto.internalrecruitment.controller.util.HttpResponseCreator;
-import com.pacto.internalrecruitment.model.dtos.user.AuthenticationRequestDto;
-import com.pacto.internalrecruitment.model.dtos.user.LoginResponseDto;
-import com.pacto.internalrecruitment.model.dtos.user.SignInRequestDto;
-import com.pacto.internalrecruitment.model.dtos.user.SignInResponseDto;
-import com.pacto.internalrecruitment.service.AuthenticationService;
-
+import com.pacto.internalrecruitment.model.Role;
+import com.pacto.internalrecruitment.model.dtos.role.RoleRequestDto;
+import com.pacto.internalrecruitment.model.dtos.role.RoleResponseDto;
+import com.pacto.internalrecruitment.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("admin/role")
 @CrossOrigin("*")
-public class AuthenticationController extends HttpResponseCreator {
+public class RoleController extends HttpResponseCreator {
 
-    private final AuthenticationService authenticationService;
+    private final RoleService roleService;
 
     @Autowired
-    public AuthenticationController(AuthenticationService authenticationService) {
-        this.authenticationService = authenticationService;
+    public RoleController(RoleService roleService) {
+        this.roleService = roleService;
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid AuthenticationRequestDto data) {
-        LoginResponseDto response = authenticationService.authenticationUser(data);
+    @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody RoleRequestDto data) {
+            System.out.println("ROLEEEE" + data.getRoleType());
+            RoleResponseDto response = roleService.createRole(data);
+            return ResponseEntity.ok(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Role>> getAllRoles() {
+        List<Role> response = roleService.findAllRoles();
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody @Valid SignInRequestDto data) {
-        SignInResponseDto response = authenticationService.registerUser(data);
-        return ResponseEntity.ok(response);
-    }
 }
