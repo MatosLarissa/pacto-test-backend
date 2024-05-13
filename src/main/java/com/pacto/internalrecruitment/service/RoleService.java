@@ -1,7 +1,7 @@
 package com.pacto.internalrecruitment.service;
 
-import com.pacto.internalrecruitment.model.User;
-import com.pacto.internalrecruitment.repository.UserRepository;
+import com.pacto.internalrecruitment.model.Role;
+import com.pacto.internalrecruitment.repository.RoleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,37 +11,40 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService  {
+public class RoleService {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static final Logger logger = LoggerFactory.getLogger(RoleService.class);
 
-    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public RoleService(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
     }
 
-    public List<User> findAllUsers() {
-        logger.info("Finding all users");
-        return userRepository.findAll();
+    public List<Role> findAllRoles() {
+        logger.info("Finding all roles");
+        return roleRepository.findAll();
     }
 
-    public User findUserById(Integer id) {
-        return userRepository.findById(id).orElse(null);
+    public Role findRoleById(Integer id) {
+        return roleRepository.findById(id).orElse(null);
+    }
+    public Role findByRoleType(String roleType) {
+        return roleRepository.findByRoleType(roleType).orElse(null);
     }
 
-    public User saveUser(User user) {
-        Optional<User> userExist = userRepository.findByEmail(user.getEmail());
-        return userRepository.save(user);
+    public Role saveRole(Role role) {
+        Optional<Role> roleExist = roleRepository.findByRoleType(role.getRoleType());
+        return roleRepository.save(role);
     }
 
-    public User updateUser(User user) {
-        return userRepository.save(user);
+    public Role updateRole(Role role) {
+        return roleRepository.save(role);
     }
 
-    public void deleteUserById(Integer id) {
-        userRepository.deleteById(id);
+    public void deleteRoleById(Integer id) {
+        roleRepository.deleteById(id);
     }
 
 }
