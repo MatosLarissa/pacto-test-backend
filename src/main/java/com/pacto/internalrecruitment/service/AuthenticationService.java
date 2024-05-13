@@ -4,10 +4,8 @@ import com.pacto.internalrecruitment.exception.AccessDeniedException;
 import com.pacto.internalrecruitment.exception.AlreadyExistsException;
 import com.pacto.internalrecruitment.exception.ExistingException;
 import com.pacto.internalrecruitment.model.User;
-import com.pacto.internalrecruitment.model.dtos.user.AuthenticationRequestDto;
-import com.pacto.internalrecruitment.model.dtos.user.LoginResponseDto;
-import com.pacto.internalrecruitment.model.dtos.user.SignInRequestDto;
-import com.pacto.internalrecruitment.model.dtos.user.SignInResponseDto;
+import com.pacto.internalrecruitment.model.dtos.user.*;
+import com.pacto.internalrecruitment.model.enums.YearsExperience;
 import com.pacto.internalrecruitment.model.factory.UserFactory;
 import com.pacto.internalrecruitment.repository.UserRepository;
 
@@ -55,6 +53,11 @@ public class AuthenticationService {
 
     public SignInResponseDto registerUser(SignInRequestDto data) {
         Optional<User> existingUser = userRepository.findByEmail(data.getEmail());
+        String inputExperience = data.getYearsExperience();
+
+        if (!YearsExperience.contains(inputExperience)) {
+            throw new ExistingException("Erro ao cadastra o tempo de experiencia, só é permitido um desses valores(ZERO_TO_ONE_YEARS, ONE_TO_THREE_YEARS, THREE_TO_FIVE_YEARS, FIVE_PLUS_YEARS)");
+        }
 
         if (existingUser.isPresent()) {
             throw new AlreadyExistsException("O email: " + data.getEmail() + " já está cadastrado");
