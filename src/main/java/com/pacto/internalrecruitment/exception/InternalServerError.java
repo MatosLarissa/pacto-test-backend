@@ -3,10 +3,10 @@ package com.pacto.internalrecruitment.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.UNAUTHORIZED)
-public class AccessDeniedException extends RuntimeException {
+@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+public class InternalServerError extends RuntimeException {
 
-    public AccessDeniedException(String message) {
+    public InternalServerError(String message) {
         super(message);
     }
 }

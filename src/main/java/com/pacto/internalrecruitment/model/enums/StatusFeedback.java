@@ -3,16 +3,23 @@ package com.pacto.internalrecruitment.model.enums;
 import lombok.Getter;
 
 @Getter
-public enum Status {
+public enum StatusFeedback {
     PENDING("pending"),
-    ACTIVE("active"),
-    REJECTED("rejected"),
-    OPEN("open"),
-    CLOSED("closed");
+    ACCEPTED("accepted"),
+    REJECTED("rejected");
 
     private final String value;
 
-    Status(String value) {
+    StatusFeedback(String value) {
         this.value = value;
+    }
+
+    public static boolean contains(String test) {
+        for (StatusFeedback c : StatusFeedback.values()) {
+            if (c.name().equals(test)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
