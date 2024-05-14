@@ -10,6 +10,7 @@ import java.util.Objects;
 public class JobAndApplicationAndFeedback {
     private JobApplication jobApplication;
     private Job job;
+    private Feedback feedback;
 
     @Override
     public boolean equals(Object o) {
@@ -17,11 +18,12 @@ public class JobAndApplicationAndFeedback {
         if (o == null || getClass() != o.getClass()) return false;
         JobAndApplicationAndFeedback that = (JobAndApplicationAndFeedback) o;
         return Objects.equals(jobApplication, that.jobApplication) &&
-                Objects.equals(job, that.job);
+                Objects.equals(job, that.job) &&
+                Objects.equals(feedback, that.feedback);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(jobApplication, job);
+        return Objects.hash(jobApplication, job, feedback);
     }
 }
