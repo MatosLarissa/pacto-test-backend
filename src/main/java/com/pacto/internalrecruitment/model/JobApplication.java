@@ -31,6 +31,14 @@ public class JobApplication {
     @Column(name ="application_date")
     private LocalDateTime applicationDate;
 
+    public JobApplication(JobApplication jobApplication) {
+        this.jobApplicationId = jobApplication.jobApplicationId;
+        this.status = jobApplication.status;
+        this.userId = jobApplication.userId;
+        this.jobId = jobApplication.jobId;
+        this.applicationDate = jobApplication.applicationDate;
+    }
+
     @PrePersist
     protected void onCreate() {
         this.applicationDate = LocalDateTime.now();
