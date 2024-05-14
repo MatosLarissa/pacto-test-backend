@@ -30,7 +30,7 @@ public class RequirementService {
         return requirementRepository.findAll();
     }
 
-    public Requirement getRequirementById(int id) {
+    public Requirement getRequirementById(Integer id) {
         logger.info("Buscando requisito por ID: {}", id);
         return requirementRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Requisito com id " + id + " não encontrado"));
@@ -73,7 +73,7 @@ public class RequirementService {
         }
     }
 
-    public RequirementResponseDto updateRequirement(int id, Requirement data) {
+    public RequirementResponseDto updateRequirement(Integer id, Requirement data) {
         logger.info("Atualizando requisito com ID: {}", id);
         validateYearsExperience(data.getYearsExperience());
         Requirement requirement = getRequirementById(id);
@@ -88,7 +88,7 @@ public class RequirementService {
         }
     }
 
-    public void deleteRequirement(int id) {
+    public void deleteRequirement(Integer id) {
         logger.info("Excluindo requisito com ID: {}", id);
         Requirement requirement = getRequirementById(id);
         requirementRepository.delete(requirement);

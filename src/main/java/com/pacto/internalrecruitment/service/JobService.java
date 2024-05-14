@@ -40,7 +40,7 @@ public class JobService {
         return jobRepository.findAll();
     }
 
-    public Job getJobById(int id) {
+    public Job getJobById(Integer id) {
         logger.info("Procurando vaga por id: {}", id);
         return jobRepository.findById(id).orElseThrow(() -> new NotFoundException("Vaga com id " + id + " não encontrada"));
     }
@@ -59,7 +59,6 @@ public class JobService {
             return Collections.emptyList();
         }
     }
-
 
     public List<Job> getJobByRequirement(String requirement) {
         logger.info("Procurando vaga por requisito: {}", requirement);
@@ -97,7 +96,7 @@ public class JobService {
         }
     }
 
-    public JobResponseDto updateJob(int id, Job data) {
+    public JobResponseDto updateJob(Integer id, Job data) {
         logger.info("Atualizando vaga com id: {}", id);
         Job job = getJobById(id);
         try {
@@ -112,7 +111,7 @@ public class JobService {
         }
     }
 
-    public void deleteJob(int id) {
+    public void deleteJob(Integer id) {
         logger.info("Excluindo vaga com id: {}", id);
         Job job = getJobById(id);
         jobRepository.delete(job);

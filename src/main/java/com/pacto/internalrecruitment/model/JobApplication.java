@@ -23,10 +23,10 @@ public class JobApplication {
     private String status;
 
     @Column(name ="user_id")
-    private String userId;
+    private Integer userId;
 
     @Column(name ="job_id")
-    private String jobId;
+    private Integer jobId;
 
     @Column(name ="application_date")
     private LocalDateTime applicationDate;
@@ -34,7 +34,7 @@ public class JobApplication {
     @PrePersist
     protected void onCreate() {
         this.applicationDate = LocalDateTime.now();
-        this.status = "OPEN";
+        this.status = "PENDING";
     }
 
 }
