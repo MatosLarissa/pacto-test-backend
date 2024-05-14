@@ -5,18 +5,22 @@ import com.pacto.internalrecruitment.model.dtos.requirement.RequirementRequestDt
 
 public class RequirementFactory {
 
-    private static void setRequirementFields(Requirement requirement, RequirementRequestDto requestDto) {
-        requirement.setRequirementName(requestDto.getRequirementName().toUpperCase());
-        requirement.setYearsExperience(requestDto.getYearsExperience().toUpperCase());
+    private static void setRequirementFields(Requirement requirement, Requirement requestDto) {
+        if (requestDto.getRequirementName() != null) {
+            requirement.setRequirementName(requestDto.getRequirementName().toUpperCase());
+        }
+        if (requestDto.getYearsExperience() != null) {
+            requirement.setYearsExperience(requestDto.getYearsExperience().toUpperCase());
+        }
     }
 
-    public static Requirement createRequirement(RequirementRequestDto requestDto) {
+    public static Requirement createRequirement(Requirement requestDto) {
         Requirement newRequirement = new Requirement();
         setRequirementFields(newRequirement, requestDto);
         return newRequirement;
     }
 
-    public static Requirement updateRequirement(Requirement existingRequirement, RequirementRequestDto requestDto) {
+    public static Requirement updateRequirement(Requirement existingRequirement, Requirement requestDto) {
         setRequirementFields(existingRequirement, requestDto);
         return existingRequirement;
     }

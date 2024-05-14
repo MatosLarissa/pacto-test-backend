@@ -23,7 +23,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class AuthenticationService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
     private final JwtTokenService tokenService;
@@ -37,18 +37,20 @@ public class AuthenticationService {
     }
 
     public LoginResponseDto authenticationUser(AuthenticationRequestDto data) {
-            Optional<User> user = userRepository.findByEmail(data.getEmail());
-            if (!user.isPresent()) {
-                throw new AccessDeniedException("O email: " + data.getEmail() + " não está cadastrado");
-            }
+        Optional<User> user = userRepository.findByEmail(data.getEmail());
+        if (!user.isPresent()) {
+            throw new AccessDeniedException("O email: " + data.getEmail() + " não está cadastrado");
+        }
 
-            UserDetails userDetails = userRepository.findUserDetailsByEmail(data.getEmail());
-            if (userDetails != null && passwordEncoder.matches(data.getPassword(), userDetails.getPassword())) {
-                String token = tokenService.generateToken(data.getEmail());
-                return new LoginResponseDto(token);
-            } else {
-                throw new AccessDeniedException("usuário não autorizado");
-            }
+        UserDetails userDetails = userRepository.findUserDetailsByEmail(data.getEmail());
+        if (userDetails != null && passwordEncoder.matches(data.getPassword(), userDetails.getPassword())) {
+            String token = tokenService.generateToken(data.getEmail());
+            logger.info("Usuário autenticado com sucesso: " + data.getEmail());
+            return new LoginResponseDto(token);
+        } else {
+            logger.warn("Tentativa de login com credenciais inválidas para o usuário: " + data.getEmail());
+            throw new AccessDeniedException("Usuário não autorizado");
+        }
     }
 
     public SignInResponseDto registerUser(SignInRequestDto data) {
@@ -56,7 +58,7 @@ public class AuthenticationService {
         String inputExperience = data.getYearsExperience();
 
         if (!YearsExperience.contains(inputExperience)) {
-            throw new ExistingException("Erro ao cadastra o tempo de experiencia, só é permitido um desses valores(ZERO_TO_ONE_YEARS, ONE_TO_THREE_YEARS, THREE_TO_FIVE_YEARS, FIVE_PLUS_YEARS)");
+            throw new ExistingException("Erro ao cadastrar o tempo de experiência, só é permitido um desses valores (ZERO_TO_ONE_YEARS, ONE_TO_THREE_YEARS, THREE_TO_FIVE_YEARS, FIVE_PLUS_YEARS)");
         }
 
         if (existingUser.isPresent()) {
@@ -66,6 +68,7 @@ public class AuthenticationService {
                 User newUser = UserFactory.createUser(data);
                 String token = tokenService.generateToken(newUser.getEmail());
                 userRepository.save(newUser);
+                logger.info("Novo usuário registrado com sucesso: " + newUser.getEmail());
                 return new SignInResponseDto(token);
             } catch (Exception e) {
                 logger.error("Erro ao salvar o usuário: " + e.getMessage());

@@ -25,7 +25,8 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name ="user_id")
+    private Integer userId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -60,8 +61,8 @@ public class User implements UserDetails {
     @ManyToMany
     @JoinTable(
             name = "user_requirement",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "requirement_id", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "requirement_id", referencedColumnName = "requirement_id")
     )
     private Set<Requirement> requirements = new HashSet<>();
 
