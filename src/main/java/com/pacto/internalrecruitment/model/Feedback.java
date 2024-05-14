@@ -1,4 +1,4 @@
-package com.pacto.internalrecruitment;
+package com.pacto.internalrecruitment.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
