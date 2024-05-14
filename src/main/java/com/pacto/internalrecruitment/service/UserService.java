@@ -18,12 +18,14 @@ public class UserService {
     private final UserRepository userRepository;
     private final JobApplicationService jobApplicationService;
     private final JobService jobService;
+    private final FeedbackService feedbackService;
 
     @Autowired
-    public UserService(UserRepository userRepository, JobApplicationService jobApplicationService, JobService jobService) {
+    public UserService(UserRepository userRepository, JobApplicationService jobApplicationService, JobService jobService, FeedbackService feedbackService) {
         this.userRepository = userRepository;
         this.jobApplicationService = jobApplicationService;
         this.jobService = jobService;
+        this.feedbackService = feedbackService;
     }
 
     public List<User> findAllUsers() {
@@ -48,6 +50,8 @@ public class UserService {
 
         User user = existingUser.get();
         List<JobApplication> jobApplicationList = jobApplicationService.getApplicationByUserId(id);
+        List<Feedback> feedbackList = feedbackService.getFeedbackByUserCandidateId(id);
+
         UserJobAndFeedback userJobAndFeedback = new UserJobAndFeedback();
         userJobAndFeedback.setUserId(id);
         userJobAndFeedback.setFirstName(user.getFirstName());
@@ -62,6 +66,13 @@ public class UserService {
             jobAndApplication.setJobApplication(application);
             Job job = jobService.getJobById(application.getJobId());
             jobAndApplication.setJob(job);
+
+            Feedback feedback = feedbackList.stream()
+                    .filter(f -> f.getJobApplicationId().equals(application.getJobApplicationId()))
+                    .findFirst()
+                    .orElse(null);
+
+            jobAndApplication.setFeedback(feedback);
             jobAndApplicationsSet.add(jobAndApplication);
         }
 

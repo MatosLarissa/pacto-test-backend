@@ -9,7 +9,6 @@ import com.pacto.internalrecruitment.model.User;
 
 import com.pacto.internalrecruitment.model.dtos.jobapplication.JobApplicationRequestDto;
 import com.pacto.internalrecruitment.model.dtos.jobapplication.JobApplicationResponseDto;
-import com.pacto.internalrecruitment.model.factory.JobApplicationFactory;
 import com.pacto.internalrecruitment.repository.JobApplicationRepository;
 import com.pacto.internalrecruitment.repository.JobRepository;
 import com.pacto.internalrecruitment.repository.UserRepository;
@@ -54,8 +53,10 @@ public class JobApplicationService {
 
     public JobApplication getApplicationById(Integer id) {
         logger.info("Procurando candidatura por id: {}", id);
-        return jobApplicationRepository.findById(id).orElseThrow(() -> new NotFoundException("Candidatura não encontrada"));
+        return jobApplicationRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Candidatura com id " + id + " não encontrada"));
     }
+
 
     public List<JobApplication> getJobByStatus(String status) {
         logger.info("Procurando aplicação por status: {}", status);
@@ -119,6 +120,23 @@ public class JobApplicationService {
             throw new ExistingException(message);
         }
     }
+
+    public void updateFeedbackStatus(Integer id, String newStatus) {
+        logger.info("Atualizando status do feedback com id: {}", id);
+        try {
+            JobApplication feedbackFound = jobApplicationRepository.findById(id)
+                    .orElseThrow(() -> new NotFoundException("Feedback não encontrado."));
+
+            feedbackFound.setStatus(newStatus);
+            jobApplicationRepository.save(feedbackFound);
+            logger.info("Feedback de id: {} foi atualizado para o status: {} com sucesso", id, newStatus);
+        } catch (Exception e) {
+            String message = "Erro ao atualizar status do feedback de id: " + id;
+            logger.error(message, e);
+            throw new ExistingException(message);
+        }
+    }
+
 
     public void deleteJob(Integer id) {
         logger.info("Excluindo candidatura com id: {}", id);
