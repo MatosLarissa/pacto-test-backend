@@ -13,14 +13,15 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Entity
 @Table(name = "job")
-@Entity(name = "job")
 @NoArgsConstructor
 public class Job {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name ="job_id")
+    private Integer jobId;
 
     @Column(name ="title")
     private String title;
@@ -29,11 +30,10 @@ public class Job {
     private String description;
 
     @Column(name ="status")
-    @Enumerated(EnumType.STRING)
-    private StatusJob status = StatusJob.OPEN;
+    private String status;
 
     @Column(name ="creator_id")
-    private String creatorId;
+    private Integer creatorId;
 
     @Column(name ="last_update")
     private LocalDateTime lastUpdate;
@@ -41,17 +41,18 @@ public class Job {
     @Column(name ="creation_date")
     private LocalDateTime creationDate;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "job_requirement",
-            joinColumns = @JoinColumn(name = "job_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "requirement_id", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "job_id"),
+            inverseJoinColumns = @JoinColumn(name = "requirement_id")
     )
     private Set<Requirement> requirements = new HashSet<>();
 
     @PrePersist
     protected void onCreate() {
         this.creationDate = LocalDateTime.now();
+        this.status = "OPEN";
     }
 
     @PreUpdate

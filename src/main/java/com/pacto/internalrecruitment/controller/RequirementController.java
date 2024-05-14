@@ -1,8 +1,6 @@
 package com.pacto.internalrecruitment.controller;
 
-import com.pacto.internalrecruitment.controller.util.HttpResponseCreator;
 import com.pacto.internalrecruitment.model.Requirement;
-import com.pacto.internalrecruitment.model.dtos.requirement.RequirementRequestDto;
 import com.pacto.internalrecruitment.model.dtos.requirement.RequirementResponseDto;
 import com.pacto.internalrecruitment.service.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("admin/requirement")
+@RequestMapping("/admin/requirement")
 @CrossOrigin("*")
-public class RequirementController  extends HttpResponseCreator {
+public class RequirementController {
 
     private final RequirementService requirementService;
 
     @Autowired
-    public RequirementController(final RequirementService requirementService) {
+    public RequirementController(RequirementService requirementService) {
         this.requirementService = requirementService;
     }
 
@@ -31,24 +29,25 @@ public class RequirementController  extends HttpResponseCreator {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> crateRequirement(@RequestBody RequirementRequestDto data) {
-        RequirementResponseDto response = requirementService.createRequirements(data);
+    public ResponseEntity<Requirement> createRequirement(@RequestBody Requirement data) {
+        Requirement response = requirementService.createRequirement(data);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Requirement> getRequirementsById(@PathVariable Integer id){
+    public ResponseEntity<Requirement> getRequirementById(@PathVariable Integer id) {
         Requirement response = requirementService.getRequirementById(id);
         return ResponseEntity.ok(response);
     }
+
     @GetMapping("/getName/{requirementName}")
-    public ResponseEntity<Requirement> getRequirementByName(@PathVariable String requirementName){
-        Requirement response = requirementService.getRequirementByName(requirementName);
+    public ResponseEntity<List<Requirement>> getRequirementsByName(@PathVariable String requirementName) {
+        List<Requirement> response = requirementService.getRequirementsByNameContaining(requirementName);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<?> updateRequirement(@PathVariable Integer id, @RequestBody RequirementRequestDto data) {
+    public ResponseEntity<RequirementResponseDto> updateRequirement(@PathVariable Integer id, @RequestBody Requirement data) {
         RequirementResponseDto response = requirementService.updateRequirement(id, data);
         return ResponseEntity.ok(response);
     }
@@ -56,7 +55,6 @@ public class RequirementController  extends HttpResponseCreator {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteRequirement(@PathVariable Integer id) {
         requirementService.deleteRequirement(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent().build();
     }
-
 }

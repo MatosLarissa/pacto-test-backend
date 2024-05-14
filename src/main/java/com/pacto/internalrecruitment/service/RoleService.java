@@ -20,7 +20,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class RoleService {
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static final Logger logger = LoggerFactory.getLogger(RoleService.class);
 
     private final RoleRepository roleRepository;
 
@@ -30,20 +30,22 @@ public class RoleService {
     }
 
     public RoleResponseDto createRole(RoleRequestDto data) {
+        logger.info("Criando função: {}", data.getRoleType());
         Optional<Role> existingRole = roleRepository.findByRoleType(data.getRoleType().toUpperCase());
 
         if (existingRole.isPresent()) {
+            logger.error("A função já existe: {}", data.getRoleType());
             throw new AlreadyExistsException("Role already exists");
         }
 
         Role newRole = RoleFactory.createRole(data);
         roleRepository.save(newRole);
-        return new RoleResponseDto(newRole.getId(), newRole.getRoleType());
+        logger.info("Função criada com sucesso: {}", newRole.getRoleType());
+        return new RoleResponseDto(newRole.getRoleId(), newRole.getRoleType());
     }
 
-
     public List<Role> findAllRoles() {
-        logger.info("Finding all roles");
+        logger.info("Buscando todas as funções");
         return roleRepository.findAll();
     }
 }

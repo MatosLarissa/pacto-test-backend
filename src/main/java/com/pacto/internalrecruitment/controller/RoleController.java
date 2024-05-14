@@ -25,7 +25,6 @@ public class RoleController extends HttpResponseCreator {
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody RoleRequestDto data) {
-            System.out.println("ROLEEEE" + data.getRoleType());
             RoleResponseDto response = roleService.createRole(data);
             return ResponseEntity.ok(response);
     }

@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class UserService  {
+public class UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -23,25 +22,27 @@ public class UserService  {
     }
 
     public List<User> findAllUsers() {
-        logger.info("Finding all users");
+        logger.info("Buscando todos os usuários");
         return userRepository.findAll();
     }
 
     public User findUserById(Integer id) {
+        logger.info("Buscando usuário por ID: {}", id);
         return userRepository.findById(id).orElse(null);
     }
 
     public User saveUser(User user) {
-        Optional<User> userExist = userRepository.findByEmail(user.getEmail());
+        logger.info("Salvando usuário: {}", user);
         return userRepository.save(user);
     }
 
     public User updateUser(User user) {
+        logger.info("Atualizando usuário: {}", user);
         return userRepository.save(user);
     }
 
     public void deleteUserById(Integer id) {
+        logger.info("Excluindo usuário por ID: {}", id);
         userRepository.deleteById(id);
     }
-
 }

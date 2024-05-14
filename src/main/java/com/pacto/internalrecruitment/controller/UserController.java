@@ -46,7 +46,7 @@ public class UserController extends HttpResponseCreator {
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User user) {
-        if (!userService.findUserById(id).getId().equals(user.getId())) {
+        if (!userService.findUserById(id).getUserId().equals(user.getUserId())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         User updatedUser = userService.updateUser(user);
