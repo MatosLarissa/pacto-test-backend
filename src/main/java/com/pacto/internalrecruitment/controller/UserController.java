@@ -2,6 +2,7 @@ package com.pacto.internalrecruitment.controller;
 
 import com.pacto.internalrecruitment.controller.util.HttpResponseCreator;
 import com.pacto.internalrecruitment.model.User;
+import com.pacto.internalrecruitment.model.UserJobAndFeedback;
 import com.pacto.internalrecruitment.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 public class UserController extends HttpResponseCreator {
+
 
     private final UserService userService;
 
@@ -35,6 +37,12 @@ public class UserController extends HttpResponseCreator {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("job/{id}")
+    public ResponseEntity<UserJobAndFeedback> getUserByIdAndReturnJobAndFeedback(@PathVariable Integer id) {
+        UserJobAndFeedback user = userService.findUserByIdAndReturnJobAndFeedback(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping
