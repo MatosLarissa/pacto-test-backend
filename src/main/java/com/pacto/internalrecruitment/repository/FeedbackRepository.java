@@ -1,6 +1,6 @@
 package com.pacto.internalrecruitment.repository;
 
-import com.pacto.internalrecruitment.Feedback;
+import com.pacto.internalrecruitment.model.Feedback;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
