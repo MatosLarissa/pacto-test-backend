@@ -23,13 +23,11 @@ public class Job {
     @Column(name ="job_id")
     private Integer jobId;
 
-    @Column(name ="title")
     private String title;
 
-    @Column(name ="description", columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(name ="status")
     private String status;
 
     @Column(name ="creator_id")
