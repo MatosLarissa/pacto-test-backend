@@ -30,17 +30,15 @@
 <p>Este projeto é uma vitrine da inovação tecnológica, incorporando um arsenal de ferramentas de ponta:</p>
 
 <ul>
-  <li><strong>Spring Boot 2.7.1: </strong> Framework para desenvolvimento de aplicações Java.</li>
-  <li><strong>Spring Data JPA: </strong> Facilita a implementação de repositórios baseados em JPA.</li>
-  <li><strong>Spring Web:</strong> Componentes para construção de aplicativos web.</li>
-  <li><strong>Spring DevTools:</strong> Ferramentas de desenvolvimento para facilitar o ciclo de desenvolvimento.</li>
-  <li><strong>PostgreSQL:</strong> Banco de dados relacional.</li>
-   <li><strong>Project Lombok</strong> Biblioteca para reduzir a verbosidade do código Java.</li>
+    <li><strong>Spring Boot 2.7.1: </strong> Framework para desenvolvimento de aplicações Java.</li>
+    <li><strong>Spring Data JPA: </strong> Facilita a implementação de repositórios baseados em JPA.</li>
+    <li><strong>Spring Web:</strong> Componentes para construção de aplicativos web.</li>
+    <li><strong>Spring DevTools:</strong> Ferramentas de desenvolvimento para facilitar o ciclo de desenvolvimento.</li>
+    <li><strong>PostgreSQL:</strong> Banco de dados relacional.</li>
+    <li><strong>Project Lombok</strong> Biblioteca para reduzir a verbosidade do código Java.</li>
     <li><strong>Spring Boot Starter Security:</strong> Implementação de segurança baseada em Spring Security.</li>
-     <li><strong>Auth0 Java JWT:</strong> Biblioteca para manipulação de JSON Web Tokens (JWT).</li>
-       <li><strong>JJWT:</strong> Biblioteca para criar e analisar JWTs em Java.</li>
-      <li><strong>Spring Boot Starter Validation:</strong> Suporte para validação de dados de entrada.</li>
-
+    <li><strong>Auth0 Java JWT:</strong> Biblioteca para manipulação de JSON Web Tokens (JWT).</li>
+    <li><strong>Spring Boot Starter Validation:</strong> Suporte para validação de dados de entrada.</li>
 </ul>
 
 <h2>💻 Pré-requisitos</h2>
