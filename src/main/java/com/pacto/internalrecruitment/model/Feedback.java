@@ -19,10 +19,9 @@ public class Feedback {
     @Column(name ="feedback_id")
     private Integer feedbackId;
 
-    @Column(name ="title")
     private String title;
 
-    @Column(name ="content", columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @Column(name ="user_response_id")
