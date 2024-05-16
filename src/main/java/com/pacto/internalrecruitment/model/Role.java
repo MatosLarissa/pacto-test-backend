@@ -21,4 +21,13 @@ public class Role {
     @Column(name = "role_type")
     private String roleType;
 
+    public Role(Integer roleId, String roleType) {
+        this.roleId = roleId;
+        this.roleType = roleType;
+    }
+
+    public Role(String roleType) {
+        this.roleType = roleType;
+    }
+
 }

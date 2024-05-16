@@ -82,16 +82,6 @@ public class UserService {
     }
 
 
-    public User saveUser(User user) {
-        logger.info("Salvando usuário: {}", user);
-        return userRepository.save(user);
-    }
-
-    public User updateUser(User user) {
-        logger.info("Atualizando usuário: {}", user);
-        return userRepository.save(user);
-    }
-
     public void deleteUserById(Integer id) {
         logger.info("Excluindo usuário por ID: {}", id);
         userRepository.deleteById(id);
