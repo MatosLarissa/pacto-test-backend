@@ -18,7 +18,7 @@ public class UserResponseDto {
 
     private String password;
 
-    private UserRole role;
+    private String roles;
 
     private StatusAccount status;
 
@@ -28,12 +28,12 @@ public class UserResponseDto {
 
     private LocalDateTime creationDate;
 
-    public UserResponseDto(String firstName, String lastName, String email, String password, UserRole role, StatusAccount status, YearsExperience yearsExperience, LocalDateTime lastActivity, LocalDateTime creationDate){
+    public UserResponseDto(String firstName, String lastName, String email, String password, String roles, StatusAccount status, YearsExperience yearsExperience, LocalDateTime lastActivity, LocalDateTime creationDate){
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
       this.password = password;
-      this.role = role;
+      this.roles = roles;
       this.status = status;
       this.lastActivity = lastActivity;
       this.creationDate = creationDate;

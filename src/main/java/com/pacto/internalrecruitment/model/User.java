@@ -38,8 +38,13 @@ public class User implements UserDetails {
 
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
+    private Set<Role> roles = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     private StatusAccount status = StatusAccount.PENDING;
@@ -73,13 +78,17 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == UserRole.ADMIN) return Stream.of("ROLE_ADMIN").map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-        else return Stream.of("ROLE_USER").map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getRoleType()))
+                .collect(Collectors.toList());
     }
 
     @Override
     public String getUsername() {
         return email;
+    }
+    public void setUsername(String email) {
+        this.email = email;
     }
 
     @Override
