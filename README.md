@@ -21,6 +21,9 @@
   <li>Filtros de requisitos específicos para as vagas.</li>
   <li>Gerenciamento de feedbacks de candidatura.</li>
   <li>Gerenciamento de vagas e candidatura.</li>
+  <li>E outras, é possivél consultar no http://localhost:3000/swagger-ui/index.html#/</li>
+<li> <a href="http://localhost:3000/swagger-ui/index.html#/?" target="_blank">Swagger</a></li>
+
 </ul>
 
 <br />
