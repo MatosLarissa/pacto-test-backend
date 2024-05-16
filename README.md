@@ -21,7 +21,6 @@
   <li>Filtros de requisitos específicos para as vagas.</li>
   <li>Gerenciamento de feedbacks de candidatura.</li>
   <li>Gerenciamento de vagas e candidatura.</li>
-  <li>E outras, é possivél consultar no http://localhost:3000/swagger-ui/index.html#/</li>
 <li> <a href="http://localhost:3000/swagger-ui/index.html#/?" target="_blank">Swagger</a></li>
 
 </ul>
@@ -80,7 +79,43 @@ $ git clone https://github.com/MatosLarissa/pacto-test-backend.git
 ```bash
 $ mvn flyway:migrate
 ```
+
+<h3>Execute a aplicação Spring Boot Docker ou utilizando:</h3
+
+<h4>Instalação do Docker e Docker Compose: Certifique-se de que o Docker e o Docker Compose estejam instalados em sua máquina. Caso não estejam, você pode baixá-los e instalá-los a partir dos seguintes links:</h4>
+
+<br />
+
+<ul>
+  <li>Docker: Instalação do Docker:</li>
+  <li>Docker Compose: Instalação do Docker Compose</li>
+  <li>Docker Compose: Instalação do Docker Compose</li>
+
+</ul>
+
+<br />
+
+<h4>Construção e execução do Docker Compose: No terminal, navegue até o diretório onde o arquivo docker-compose.yml está localizado e execute o seguinte comando para construir e iniciar os serviços:</4>
+
+<br />
+
+```bash
+$ docker-compose up --build
+```
+
+<br />
+<h4> Verificação: Após a execução do comando, o Docker irá baixar as imagens necessárias, construir o serviço do aplicativo e iniciar os serviços definidos. Você pode verificar se os serviços estão rodando corretamente acessando a aplicação no navegador em http://localhost:3000. </h4>
+<h4>Parar os serviços: Quando terminar, você pode parar os serviços do Docker Compose executando o seguinte comando no terminal:</h4>
+
+<br />
+
+```bash
+$ docker-compose down
+```
+<br />
+
 <h3>Importar o Projeto na IDE:</h3>
+<br />
 <ul>
   <li>Importe o projeto para sua IDE como um projeto Maven existente.</li>
 </ul>
@@ -94,7 +129,9 @@ $ mvn flyway:migrate
 $ mvn install
 ```
 <ul>
-  <li>Execute a aplicação Spring Boot pela IDE ou utilizando o seguinte comando Maven:</li>
+
+<h3>Importar o Projeto na IDE:</h3>
+  <h3>Execute a aplicação Spring Boot pela IDE ou utilizando o seguinte comando Maven:</h3>
 </ul>
 <br />
 
