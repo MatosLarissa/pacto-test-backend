@@ -9,6 +9,8 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 COPY . /app
 
+COPY init-db.sql /docker-entrypoint-initdb.d/
+
 WORKDIR /app
 
 RUN mvn clean install
