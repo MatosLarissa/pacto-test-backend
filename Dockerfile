@@ -1,16 +1,22 @@
 FROM ubuntu:latest AS build
 
-RUN apt-get update
-RUN apt-get install openjdk-8-jdk- -y
-COPY . .
+RUN apt-get update && apt-get install -y \
+    openjdk-8-jdk \
+    maven \
+    && apt-get clean
 
-RUN apt-get install maven -y
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+
+COPY . /app
+
+WORKDIR /app
+
 RUN mvn clean install
 
 FROM openjdk:8-jdk-slim
 
 EXPOSE 8080
 
-COPY --from=build /tmp/target/internal-recruitment-1.0.0-SNAPSHOT.jar /app/internal-recruitment.jar
+COPY --from=build /app/target/internal-recruitment-1.0.0-SNAPSHOT.jar /app/internal-recruitment.jar
 
-ENTRYPOINT ["java","-jar","/app/internal-recruitment.jar"]
+ENTRYPOINT ["java", "-jar", "/app/internal-recruitment.jar"]
