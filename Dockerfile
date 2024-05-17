@@ -9,7 +9,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 COPY . /app
 
-COPY init-db.sql /docker-entrypoint-initdb.d/
+COPY src/main/resources/init-db.sql /docker-entrypoint-initdb.d/
 
 WORKDIR /app
 
