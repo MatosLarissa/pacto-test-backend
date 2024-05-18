@@ -27,7 +27,7 @@ jobs:
           mvn -B deploy --file pom.xml \
             -Dmaven.repo.local=./.m2/repository \
             -DrepositoryId=github \
-            -Durl=https://maven.pkg.github.com/OWNER/REPOSITORY \
+            -Durl=https://maven.pkg.github.com/MatosLarissa/pacto-test-backend \
             -DskipTests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
