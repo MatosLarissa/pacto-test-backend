@@ -20,6 +20,8 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 8.0
+          server-id: github
+          settings-path: ${{ github.workspace }}
           distribution: 'adopt'
 
       - name: Build and Publish
@@ -30,4 +32,4 @@ jobs:
             -Durl=https://maven.pkg.github.com/MatosLarissa/pacto-test-backend \
             -DskipTests
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
