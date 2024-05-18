@@ -65,22 +65,22 @@
 ```bash
 $ git clone https://github.com/MatosLarissa/pacto-test-backend.git
 ```
-<h3>Execute a aplicação Spring Boot Docker ou utilizando:</h3
+<h3>Execute a aplicação Spring Boot Docker ou utilizando:</h3>
 
-<h4>Instalação do Docker e Docker Compose: Certifique-se de que o Docker e o Docker Compose estejam instalados em sua máquina. Caso não estejam, você pode baixá-los e instalá-los a partir dos seguintes links:</h4>
+<h4>
+Instalação do Docker e Docker Compose: Certifique-se de que o Docker e o Docker Compose estejam instalados em sua máquina. Caso não estejam, você pode baixá-los e instalá-los a partir dos seguintes links:
+</h4>
 
 <br />
 
 <ul>
   <li>Docker: Instalação do Docker:</li>
   <li>Docker Compose: Instalação do Docker Compose</li>
-  <li>Docker Compose: Instalação do Docker Compose</li>
-
 </ul>
 
 <br />
 
-<h4>Construção e execução do Docker Compose: No terminal, navegue até o diretório onde o arquivo docker-compose.yml está localizado e execute o seguinte comando para construir e iniciar os serviços:</4>
+<h4>Construção e execução do Docker Compose: No terminal, navegue até o diretório onde o arquivo docker-compose.yml está localizado e execute o seguinte comando para construir e iniciar os serviços:</h4>
 
 <br />
 
@@ -89,7 +89,20 @@ $ docker-compose up --build
 ```
 
 <br />
-<h4> Verificação: Após a execução do comando, o Docker irá baixar as imagens necessárias, construir o serviço do aplicativo e iniciar os serviços definidos. Você pode verificar se os serviços estão rodando corretamente acessando a aplicação no navegador em <strong><a href="http://localhost:8080/swagger-ui/index.html" target="_blank">http://localhost:8080/swagger-ui/index.html#/?</a>. </h4>
+<h4>
+Verificação: Após a execução do comando, o Docker irá baixar as imagens necessárias, construir o serviço do aplicativo e iniciar os serviços definidos.
+</h4>
+<h5> 
+O sistema irá iniciar com um admin padrão
+</h5>
+<ul>
+  <li> <b> email: </b> admin@pacto.com</li>
+  <li> <b> senha: </b> 123</li>
+</ul>
+
+<h4> 
+ Você pode verificar se os serviços estão rodando corretamente acessando a aplicação no navegador em <strong><a href="http://localhost:8080/swagger-ui/index.html" target="_blank">http://localhost:8080/swagger-ui/index.html#/?</a>. </h4>
+
 <h4>Parar os serviços: Quando terminar, você pode parar os serviços do Docker Compose executando o seguinte comando no terminal:</h4>
 
 <br />
