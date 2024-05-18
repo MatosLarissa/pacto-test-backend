@@ -1,3 +1,4 @@
+# Etapa de construção
 FROM ubuntu:latest AS build
 
 RUN apt-get update && apt-get install -y \
@@ -15,6 +16,7 @@ WORKDIR /app
 
 RUN mvn clean install
 
+# Etapa de execução
 FROM openjdk:8-jdk-slim
 
 EXPOSE 8080
