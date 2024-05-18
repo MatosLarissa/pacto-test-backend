@@ -21,7 +21,7 @@
   <li>Filtros de requisitos específicos para as vagas.</li>
   <li>Gerenciamento de feedbacks de candidatura.</li>
   <li>Gerenciamento de vagas e candidatura.</li>
-<li> <a href="http://localhost:3000/swagger-ui/index.html#/?" target="_blank">Swagger</a></li>
+<li> <a href="http://localhost:8080/swagger-ui/index.html" target="_blank">Swagger</a></li>
 
 </ul>
 
@@ -65,21 +65,6 @@
 ```bash
 $ git clone https://github.com/MatosLarissa/pacto-test-backend.git
 ```
-<h3>Configurar o Banco de Dados:</h3>
-<ul>
-  <li>Criar um banco de dados PostgreSQL.</li>
-  <li>Atualizar as credenciais do banco de dados no arquivo application.properties.</li>
-</ul>
-<h3>Executar as Migrações do Banco de Dados:</h3>
-<ul>
-  <li>O projeto utiliza as migrações do Flyway. Execute o comando Maven para aplicar as migrações:</li>
-</ul>
-<br />
-
-```bash
-$ mvn flyway:migrate
-```
-
 <h3>Execute a aplicação Spring Boot Docker ou utilizando:</h3
 
 <h4>Instalação do Docker e Docker Compose: Certifique-se de que o Docker e o Docker Compose estejam instalados em sua máquina. Caso não estejam, você pode baixá-los e instalá-los a partir dos seguintes links:</h4>
@@ -104,7 +89,7 @@ $ docker-compose up --build
 ```
 
 <br />
-<h4> Verificação: Após a execução do comando, o Docker irá baixar as imagens necessárias, construir o serviço do aplicativo e iniciar os serviços definidos. Você pode verificar se os serviços estão rodando corretamente acessando a aplicação no navegador em http://localhost:3000. </h4>
+<h4> Verificação: Após a execução do comando, o Docker irá baixar as imagens necessárias, construir o serviço do aplicativo e iniciar os serviços definidos. Você pode verificar se os serviços estão rodando corretamente acessando a aplicação no navegador em <strong><a href="http://localhost:8080/swagger-ui/index.html" target="_blank">http://localhost:8080/swagger-ui/index.html#/?</a>. </h4>
 <h4>Parar os serviços: Quando terminar, você pode parar os serviços do Docker Compose executando o seguinte comando no terminal:</h4>
 
 <br />
@@ -130,6 +115,12 @@ $ mvn install
 ```
 <ul>
 
+<h3>Configurar o Banco de Dados:</h3>
+<ul>
+  <li>Criar um banco de dados PostgreSQL.</li>
+  <li>Atualizar as credenciais do banco de dados no arquivo <b> application.properties</b>.</li>
+</ul>
+
 <h3>Importar o Projeto na IDE:</h3>
   <h3>Execute a aplicação Spring Boot pela IDE ou utilizando o seguinte comando Maven:</h3>
 </ul>
@@ -141,7 +132,7 @@ $ mvn spring-boot:run
 
 <h3>Acessar a Aplicação:</h3>
 <ul>
-  <li>A aplicação estará disponível em <strong><a href="http://localhost:3000" target="_blank">http://localhost:3000</a> <strong>.</li>
+  <li>A aplicação estará disponível em <strong><a href="http://localhost:8080" target="_blank">http://localhost:8080</a> <strong>.</li>
 </ul>
 
 
